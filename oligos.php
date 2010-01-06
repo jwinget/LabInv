@@ -18,19 +18,25 @@
 	//]]></script>
 </head>
 <body>
-<h1>Oligo Database</h1>
+<div id='container'>
+<div id='top'>
+	<h1>Oligo Database</h1>
+</div>
+<div id='main'>
 <div id='oligo_add' style='display:none;'>
 		<FORM ACTION="oligo_add.php" METHOD=POST>
 		<h4>Oligo Name:</h4>
-		<INPUT TYPE=TEXT NAME="oligo_name" />
+		<INPUT TYPE=TEXT NAME="oligo_name" /><br />
 		<h4>Sequence:</h4>
-		<INPUT TYPE=TEXT NAME="oligo_sequence" />
+		<INPUT TYPE=TEXT NAME="oligo_sequence" /><br />
 		<h4>Supplier:</h4>
-		<INPUT TYPE=TEXT NAME="oligo_supplier" />
+		<INPUT TYPE=TEXT NAME="oligo_supplier" /><br />
+		<h4>Concentration:</h4>
+		<INPUT TYPE=TEXT WIDTH='4' NAME="oligo_concentration" /><br />
 		<h4>Entered by:</h4>
-		<INPUT TYPE=TEXT NAME="oligo_originator" />
+		<INPUT TYPE=TEXT NAME="oligo_originator" /><br />
 		<h4>Notes and Usage:</h4>
-		<TEXTAREA ROWS="5" COLS="40" NAME="oligo_notes"></textarea>
+		<TEXTAREA ROWS="5" COLS="40" NAME="oligo_notes"></textarea><br />
 		<INPUT TYPE=SUBMIT NAME="submit_oligo" ID="submit_oligo" VALUE="SUBMIT" />
 	</FORM>
 </div>
@@ -49,10 +55,11 @@ if (isset($id)) {
 		{
 		echo "<h1>".$row['name']."</h1>";
 		echo "<h4>Sequence:</h4><code>".$row['sequence']."</code>";
-		echo "<h4>Date added</h4><p>".$row['date_added']."</p>";
+		echo "<h4>Notes:</h4><p>".$row['notes']."</p>";
+		echo "<h4>Concentration</h4>:<p>".$row['concentration']."</p>";
 		echo "<h4>Added by</h4><p>".$row['originator']."</p>";
 		echo "<h4>Supplier</h4><p>".$row['supplier']."</p>";
-		echo "<h4>Notes</h4><p>".$row['notes']."</p>";
+		echo "<h4>Date added</h4><p>".$row['date_added']."</p>";
 		}
 	echo '<a href="oligo_delete.php?oligo_id='.$id.'>Delete oligo</a>';
 	}
@@ -76,6 +83,7 @@ $result = mysql_query("SELECT * FROM oligos");
 ?>
 </div>
 <p><a href='' id='add_oligo'>Add an oligo</a></p>
+</div>
 <?php 
 };
 include 'foot.php' ?>

@@ -7,11 +7,12 @@
 	include 'head.php' ?>
 </head>
 <body>
+<div id='container'>
 <?php include 'db_con.php'; ?>
 <div id='top'>
 	<h1>DNA Inventory</h1>
 </div>
-
+<div id='main'>
 <div id='latest_oligos'>
 	<h3>Latest Oligos</h3>
 	<span class='add'>
@@ -37,6 +38,7 @@
 	<span class='add'>
 		<a href='constructs.php'>Complete Listing</a>
 	</span>
+</div>
 </div>
 <?php
 };
