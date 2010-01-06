@@ -22,6 +22,12 @@
 <div id='top'>
 	<h1>Oligo Database</h1>
 </div>
+<div id='nav'>
+<ul id='crumbs'>
+	<li><a href='index.php'>Home</a></li>
+	<li><p>Oligo Database</p></li>
+</ul>
+</div>
 <div id='main'>
 <div id='oligo_add' style='display:none;'>
 		<FORM ACTION="oligo_add.php" METHOD=POST>
@@ -40,6 +46,7 @@
 		<INPUT TYPE=SUBMIT NAME="submit_oligo" ID="submit_oligo" VALUE="SUBMIT" />
 	</FORM>
 </div>
+<p><a href='' id='add_oligo'>Add an oligo</a></p>
 
 <div id='oligo_list'>
 <?php
@@ -47,7 +54,8 @@ include 'db_con.php';
 
 // Check to see if this is a detail page
 $id = $_GET['oligo_id'];
-if (isset($id)) { 
+if (isset($id)) {
+	echo("<a href='oligos.php'>Back to full list</a>");
 	$result = sprintf("SELECT * FROM oligos WHERE id = '%s'",
 		mysql_real_escape_string($id));
 	$query = mysql_query($result);
@@ -56,7 +64,7 @@ if (isset($id)) {
 		echo "<h1>".$row['name']."</h1>";
 		echo "<h4>Sequence:</h4><code>".$row['sequence']."</code>";
 		echo "<h4>Notes:</h4><p>".$row['notes']."</p>";
-		echo "<h4>Concentration</h4>:<p>".$row['concentration']."</p>";
+		echo "<h4>Concentration:</h4><p>".$row['concentration']."</p>";
 		echo "<h4>Added by</h4><p>".$row['originator']."</p>";
 		echo "<h4>Supplier</h4><p>".$row['supplier']."</p>";
 		echo "<h4>Date added</h4><p>".$row['date_added']."</p>";
@@ -67,6 +75,7 @@ if (isset($id)) {
 
 else { 
 // Get oligo list
+echo ("<ul id='oligo_list'>");
 $result = mysql_query("SELECT * FROM oligos");
 	if (!$result) {
 		echo('<p>Error retrieving oligo list</p>');
@@ -75,14 +84,12 @@ $result = mysql_query("SELECT * FROM oligos");
 	else {
 		while ($row = mysql_fetch_array($result))
 			{
-			echo "<a href=?oligo_id=" . $row['id'] . '> ' . $row['name'] . '</a>';
-			echo '<br />';
+			echo "<li><p><a href=?oligo_id=" . $row['id'] . "> " . $row['name'] . "</a> - ".$row['notes']."</p></li>";
 			}
 		}
 	}
 ?>
 </div>
-<p><a href='' id='add_oligo'>Add an oligo</a></p>
 </div>
 <?php 
 };

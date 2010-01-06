@@ -47,6 +47,8 @@ blockquote, q {
 	quotes: "" "";
 }
 /* END RESET */
+/* COLOR PALETTE:
+ * http://www.colourlovers.com/palette/67728/picasso_blue */
 
 /* TYPOGRAPHY */
 * {font: Helvetica, Arial, sans; color: black;}
@@ -66,9 +68,6 @@ h3 {
 	}
 h4	{
 	font-size: 1em;
-	}
-#oligo_list h4 {
-	display: inline;
 	}
 p, a {
 	font-size: 0.9em;
@@ -115,11 +114,34 @@ body {
 #top {
 	border-bottom: 2px solid #7F8F74;
 	}
+#crumbs {
+	border: 1px solid #7F8F74;
+	height: 2.3em;
+	}
+#crumbs li {
+	line-height: 2.3em;
+	float: left;
+	padding-left: 0.75em;
+	}
+#crumbs li a {
+	display: block;
+	border: none;
+	padding: 0 15px 0 0;
+	background: url(site_media/crumbs.gif) no-repeat right center;
+	}
 #main {
+	clear: both;
 	}
 #latest_oligos, #latest_constructs {
 	border: 2px dashed #7F8F74;
-	background-color: #C5CFBD;
+	background-color: #E0F0D6;
+	}
+#oligo_list {
+	border-bottom: 1px solid #414E39;
+	}
+#oligo_list li {
+	border-top: 1px solid #414E39;
+	padding: 0.25em 0;
 	}
 #footer	{
 	clear: both;
