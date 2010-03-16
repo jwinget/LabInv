@@ -10,9 +10,9 @@
 <body>
 <?php
 include 'db_con.php';
-$id = $_GET['oligo_id'];
+$id = $_GET['construct_id'];
 if (isset($id)) {
-	$result = sprintf("SELECT * FROM oligos WHERE id = '%s'",
+	$result = sprintf("SELECT * FROM constructs WHERE id = '%s'",
 		mysql_real_escape_string($id));
 	$query = mysql_query($result);
 	while ($row = mysql_fetch_array($query))
@@ -21,10 +21,10 @@ if (isset($id)) {
 		}
 	}
 ?>
-<h4>This cannot be undone</h4>
-<FORM ACTION='oligo_deleted.php' METHOD=POST>
-<?php echo "<INPUT TYPE=HIDDEN NAME='oligo_id' VALUE=".$id.">"; ?>
-<INPUT TYPE=SUBMIT NAME='delete_oligo' ID='delete_oligo' VALUE='DELETE' />
+<h4><alert>This cannot be undone</alert></h4>
+<FORM ACTION='construct_deleted.php' METHOD=POST>
+<?php echo "<INPUT TYPE=HIDDEN NAME='construct_id' VALUE=".$id.">"; ?>
+<INPUT TYPE=SUBMIT NAME='delete_construct' ID='delete_construct' VALUE='DELETE' />
 </FORM>
 <?php
 };

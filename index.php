@@ -21,7 +21,7 @@
 <div id='latest_oligos'>
 	<h3>Latest Oligos</h3>
 	<span class='add'>
-		<a href='oligos.php'>Complete listing</a>
+		<a href='oligos.php'>Full OTM Database</a>
 	</span>
 	<ul id='oligo_list'>
 	<?php
@@ -43,7 +43,7 @@
 <div id='latest_constructs'>
 	<h3>Latest DNA Constructs</h3>
 	<span class='add'>
-		<a href='constructs.php'>Complete Listing</a>
+		<a href='constructs.php'>Full BPM Database</a>
 	</span>
 	<ul id='oligo_list'>
 	<?php
@@ -56,7 +56,7 @@
 		}
 
 		while ($row = mysql_fetch_array($result) ) {
-			echo('<li><p><a href=constructs.php?construct_id='.$row['id'].'>'.$row['name'].'</a> - '.$row['notes'].'</p></li>');
+			echo('<li><p><a href=constructs.php?construct_id='.$row['id'].'>'.$row['name'].'</a> - '.$row['drug_resist'].' - '.$row['strain'].'</p></li>');
 		}
 	?>
 	</ul>

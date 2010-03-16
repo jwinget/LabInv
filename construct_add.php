@@ -20,23 +20,27 @@ if((!empty($_FILES['construct_map'])) && ($_FILES['construct_map']['error'] == 0
 	$ext = substr($filename, strrpos($filename, '.') + 1);
 	if (($ext == 'png') && ($_FILES['construct_map']['type'] == 'image/png') && ($_FILES['construct_map']['size'] < 300000)) {
 		$newname = dirname(__FILE__).'/maps/'.$filename;
+		$map_url = 'maps/'.$filename;
 		if (!file_exists($newname)) {
 			if ((move_uploaded_file($_FILES['construct_map']['tmp_name'],$newname))) {
 			} else {
 				echo "Error: A problem occurred during file upload";
+				die();
 				}
 		} else {
-			echo "Error: File ".$_FILES['construct_map']['name']." already exists";
+			echo "<h2>Error: File ".$_FILES['construct_map']['name']." already exists. Using the existing map. </h2><br />";
 			}
 	} else {
 		echo "Error: Only .png images under 300kb are accepted for upload";
+		die();
 		}
 } else {
 	echo "Error: No file uploaded";
+	die();
 }
 
 // Process the form
-$query = "INSERT INTO constructs (id, name, sequence, parent_vector, drug_resist, strain, bpm_precursor, otm_precursor_1, otm_precursor_2, map, date_added, originator, outside_source, notes) VALUES ('NULL', '".$construct_name."', '".$construct_sequence."', '".$construct_parent_vector."', '".$construct_resist."', '".$construct_strain."', '".$bpm_precursor."', '".$otm_precursor_1."', '".$otm_precursor_2."', '".$newname."', CURDATE(), '".$construct_originator."', '".$construct_source."', '".$construct_notes."')";
+$query = "INSERT INTO constructs (id, name, sequence, parent_vector, drug_resist, strain, bpm_precursor, otm_precursor_1, otm_precursor_2, map, date_added, originator, outside_source, notes) VALUES ('NULL', '".$construct_name."', '".$construct_sequence."', '".$construct_parent_vector."', '".$construct_resist."', '".$construct_strain."', '".$bpm_precursor."', '".$otm_precursor_1."', '".$otm_precursor_2."', '".$map_url."', CURDATE(), '".$construct_originator."', '".$construct_source."', '".$construct_notes."')";
 
 mysql_query($query) or die ('Error adding construct');
 

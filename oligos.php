@@ -5,6 +5,7 @@
 		}
 	else {
 	include 'head.php';
+	error_reporting(E_ERROR | E_WARNING | E_PARSE);
 ?>
 
 	<script> //<![CDATA[    
@@ -37,7 +38,7 @@
 		<INPUT TYPE=TEXT NAME="oligo_sequence" /><br />
 		<h4>Supplier:</h4>
 		<INPUT TYPE=TEXT NAME="oligo_supplier" /><br />
-		<h4>Concentration:</h4>
+		<h4>Concentration (mM), NUMBER ONLY:</h4>
 		<INPUT TYPE=TEXT WIDTH='4' NAME="oligo_concentration" /><br />
 		<h4>Entered by:</h4>
 		<INPUT TYPE=TEXT NAME="oligo_originator" /><br />

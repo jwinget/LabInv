@@ -9,7 +9,7 @@ $oligo_originator = mysql_real_escape_string($_POST['oligo_originator']);
 $oligo_notes = mysql_real_escape_string($_POST['oligo_notes']);
 
 // Process the form
-$query = "INSERT INTO oligos (id, name, sequence, supplier, concentration, date_added, originator, notes) VALUES ('NULL', '".$oligo_name."', '".$oligo_sequence."', '".$oligo_supplier."', '".oligo_concentration"', CURDATE(), '".$oligo_originator."', '".$oligo_notes."')";
+$query = "INSERT INTO oligos (id, name, sequence, supplier, concentration, date_added, originator, notes) VALUES ('NULL', '".$oligo_name."', '".$oligo_sequence."', '".$oligo_supplier."', '".oligo_concentration."', CURDATE(), '".$oligo_originator."', '".$oligo_notes."')";
 
 mysql_query($query) or die ('Error adding oligo');
 

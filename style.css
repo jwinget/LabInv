@@ -75,6 +75,12 @@ p, a {
 small {
 	font-size: 0.6em;
 	}
+.block {
+	display: block;
+	}
+.inline {
+	display: inline;
+	}
 /* LINKS */
 a {
 	display: inline;
@@ -103,10 +109,18 @@ a:hover {
 	width: 48%;
 	float: right;
 	}
+#mapdiv {
+	width: 350px;
+	float: right;
+	overflow: hidden;
+	}
+#mapdiv img {
+	width: 100%;
+	}
 /* DESIGN & DECORATION */
 body {
 	border-top: 20px solid black;
-	border-bottom: 20px solid black;
+	border-bottom: 50px solid black;
 	}
 #container {
 	margin: 2em auto;
@@ -116,21 +130,22 @@ body {
 	}
 #crumbs {
 	border: 1px solid #7F8F74;
-	height: 2.3em;
+	height: 1.5em;
 	}
 #crumbs li {
-	line-height: 2.3em;
+	line-height: 1.5em;
 	float: left;
 	padding-left: 0.75em;
 	}
 #crumbs li a {
 	display: block;
 	border: none;
-	padding: 0 15px 0 0;
+	padding: 0 20px 0 0;
 	background: url(site_media/crumbs.gif) no-repeat right center;
 	}
 #main {
 	clear: both;
+	margin-bottom: 0.5em;
 	}
 #latest_oligos, #latest_constructs {
 	border: 2px dashed #7F8F74;
@@ -142,6 +157,27 @@ body {
 #oligo_list li {
 	border-top: 1px solid #414E39;
 	padding: 0.25em 0;
+	}
+#topbar {
+	background-color: #E0F0D6;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	margin: 0.25em 0;
+	}
+#topbar ul li {
+	display: inline;
+	padding: 0 0.5em;
+	}
+#help_toc {
+	background-color: #E0F0D6;
+	border: 1px dashed black;
+	margin: 0 0 2em 0;
+	padding-left: 0.25em;
+	}
+#login {
+	width: 300px;
+	margin: auto;
+	padding: 10em 0;
 	}
 #footer	{
 	clear: both;

@@ -2,10 +2,10 @@
 
 import MySQLdb, csv, re, string
 
-otm = open('/home/jason/web/otm.csv', 'rb')
+otm = open('/home/jason/www/otm.csv', 'rb')
 reader = csv.reader(otm)
 
-db = MySQLdb.connect(host='localhost', user='mayorlab', passwd='T!b0m@y0r', db='labinv')
+db = MySQLdb.connect(host='localhost', unix_socket='/opt/lampp/var/mysql/mysql.sock', user='mayorlab', passwd='T!b0m@y0r', db='labinv')
 cursor = db.cursor()
 
 reader.next()

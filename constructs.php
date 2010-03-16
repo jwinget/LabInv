@@ -9,7 +9,7 @@
 	# Hide errors when $construct_id isn't set
 	error_reporting(E_ERROR | E_WARNING | E_PARSE);
 ?>
-
+	</script>
 	<script> //<![CDATA[    
 		// When the page is ready
 		$(document).ready(function(){
@@ -41,6 +41,7 @@
 		<h4>Parent Vector:</h4>
 		<INPUT TYPE=TEXT NAME="construct_parent_vector" /><br />
 		<h4>Map:</h4>
+		<a class='inline' href='http://wishart.biology.ualberta.ca/PlasMapper/' target='_blank'>Generate map here</a><p class='inline'>, save to your computer, and upload below</p><br />
 		<INPUT TYPE=HIDDEN NAME='max_map_size' VALUE='300000'/ >
 		<INPUT TYPE=FILE NAME="construct_map" /><br />
 		<h4>Drug Resistance:</h4>
@@ -71,14 +72,25 @@ include 'db_con.php';
 // Check to see if this is a detail page
 $id = $_GET['construct_id'];
 if (isset($id)) {
-	echo("<a href='constructs.php'>Back to full list</a>");
 	$result = sprintf("SELECT * FROM constructs WHERE id = '%s'",
 		mysql_real_escape_string($id));
 	$query = mysql_query($result);
 	while ($row = mysql_fetch_array($query))
 		{
+		echo "<div id='topbar'>";
+		echo "<ul>";
+		echo "<li><a href='fasta.php?dna_type=constructs&id=".$row['id']."'>FASTA</a></li>";
+		echo "<li><a href=".$row['map'].">Plasmid Map</a></li>";
+		echo "<li><a href='constructs.php'>Full construct list</a></li>";
+		echo "<li><a href='help.php'>Help</a></li>";
+		echo "</ul>";
+		echo "</div>";
 		echo "<h1>".$row['name']."</h1>";
-		echo "<h4>Sequence:</h4><code>".$row['sequence']."</code>";
+		echo "<div id='mapdiv'><a href=".$row['map']."><img src=".$row['map']." /></a></div>";
+		echo "<h4>Resistance:</h4><p>".$row['drug_resist']."</p><br />";
+		echo "<h4>Strain:</h4><p>".$row['strain']."</p><br />";
+		echo "<h4>Notes:</h4><p>".$row['notes']."</p><br />";
+		echo "<h4>Originator:</h4><p>".$row['originator']."</p><br />";
 		}
 	echo '<a href="construct_delete.php?construct_id='.$id.'>Delete construct</a>';
 	}
