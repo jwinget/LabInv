@@ -23,17 +23,17 @@ if (isset($dna_type)) {
 	if (isset($id)) {
 		if ($id == 'all') {
 			$result = sprintf("SELECT * FROM %s",
-				mysql_real_escape_string($dna_type));
+				mysql_real_escape_string($dna_type.'s'));
 				}
 		else {
 			$result = sprintf("SELECT * FROM %s WHERE id = %s",
-				mysql_real_escape_string($dna_type),
+				mysql_real_escape_string($dna_type.'s'),
 				mysql_real_escape_string($id));
 				}
 		$query = mysql_query($result) or die("Query failed with: ".mysql_error());
 		while ($row = mysql_fetch_array($query))
 			{
-			echo "<pre>>".$row['name']."<br />";
+			echo "<pre>&gt;".$row['name']."<br />";
 			echo $row['sequence']."</pre><br />";
 			}
 		}

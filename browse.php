@@ -39,7 +39,8 @@
 		</ul>
 	</div>
 	<div id='main'>
-		<a href='<?php echo 'add.php?dna_type='.$dna_type ;?>'>Add <?php echo ucwords($dna_type); ?></a>
+		<a class='inline' href='<?php echo 'add.php?dna_type='.$dna_type ;?>'>Add <?php echo ucwords($dna_type); ?></a>
+		<a class='inline' href='fasta.php?dna_type=<?php echo $dna_type; ?>&id=all'>FASTA sequences</a>
 		<div id='view'>
 		<?php
 		include 'db_con.php';
@@ -50,9 +51,44 @@
 			$result = sprintf("SELECT * FROM ".$dna_type."s WHERE id = '%s'",
 				mysql_real_escape_string($id));
 			$query = mysql_query($result);
+			while ($row = mysql_fetch_array($query)) {
+				echo "<div id='topbar'>";
+				echo "<ul>";
+				echo ("<li><a href='browse.php?dna_type=".$dna_type."'>Complete List</a></li>");
+				echo ("<li><a href='fasta.php?dna_type=".$dna_type."&id=".$row['id']."'>FASTA</a></li>");
+			# only link to the plasmid map if this is a construct
 			switch ($dna_type) {
 				default:
 					break;
+				case 'oligo':
+					break;
+				case 'construct':
+					echo ("<li><a href=".$row['map'].">Plasmid Map</a></li>");
+					break;
+				}
+				echo ("<li><a href='help.php'>Help</a></li>");
+				echo '</ul>';
+				echo '</div>';
+				echo "<h1>".$row['name']."</h1>";
+			# display information based on dna type
+			switch ($dna_type) {
+				default:
+					break;
+				case 'oligo':
+					echo "<h4>Sequence:</h4><pre>".$row['sequence']."</pre>";
+					echo "<h4>Concentration (mM):</h4><p>".$row['concentration']."</p>";
+					echo "<h4>Supplier:</h4><p>".$row['supplier']."</p>";
+					break;
+				case 'construct':
+					echo "<div id='mapdiv'><a href=".$row['map']."><img src=".$row['map']." /></a></div>";
+					echo "<h4>Resistance:</h4><p>".$row['drug_resist']."</p><br />";
+					echo "<h4>Strain:</h4><p>".$row['strain']."</p><br />";
+					break;
+					}
+				echo "<h4>Notes:</h4><p>".$row['notes']."</p>";
+				echo "<h4>Added By:</h4><p>".$row['originator']."</p>";
+				echo "<h4>Date Added:</h4><p>".$row['date_added']."</p>";
+				echo ("<span id='delete'><a href='delete.php?dna_type=".$dna_type."&id=".$id."'>Delete Entry</a></span>");
 				}
 		}
 		else {

@@ -5,4 +5,3 @@
 	<title>DNA Inventory Management</title>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<link rel='stylesheet' type='text/css' href='style.css' />
-	<script src="http://jquery.com/src/jquery-latest.js"></script>
