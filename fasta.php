@@ -14,10 +14,14 @@
 <body>
 <div id='container'>
 <div id='main'>
+<h1>FASTA Sequence output:</h1>
 <?php
 include 'db_con.php';
 
 $dna_type = $_GET['dna_type'];
+echo ('<a href = "browse.php?dna_type='.$dna_type.'">Back to '.$dna_type.' database</a><br />');
+
+echo "<TEXTAREA NAME='fasta_seqs' ROWS='60' COLS='60'>";
 if (isset($dna_type)) {
 	$id = $_GET['id'];
 	if (isset($id)) {
@@ -33,14 +37,15 @@ if (isset($dna_type)) {
 		$query = mysql_query($result) or die("Query failed with: ".mysql_error());
 		while ($row = mysql_fetch_array($query))
 			{
-			echo "<pre>&gt;".$row['name']."<br />";
-			echo $row['sequence']."</pre><br />";
+			$cleanseq = trim(strtolower(str_replace(array(" ", "\n", "\r"), '', $row['sequence'])));
+			$str = '&gt;'.$row['name']."\n".$cleanseq."\n\n";
+			echo $str;
 			}
 		}
 	};
 	
 ?>
-</div>
+</TEXTAREA>
 </div>
 <?php
 };

@@ -13,9 +13,6 @@
 	$dna_type = $_GET['dna_type'];
 	
 	# Redirect to index if the dna type isn't set or is set incorrectly 
-	if(!isset ($dna_type)) {
-		header('Location: index.php');
-		}
 	switch ($dna_type) {
 		case 'oligo':
 			break;
@@ -39,8 +36,8 @@
 		</ul>
 	</div>
 	<div id='main'>
-		<a class='inline' href='<?php echo 'add.php?dna_type='.$dna_type ;?>'>Add <?php echo ucwords($dna_type); ?></a>
-		<a class='inline' href='fasta.php?dna_type=<?php echo $dna_type; ?>&id=all'>FASTA sequences</a>
+			<a class='inline' href='<?php echo 'add.php?dna_type='.$dna_type ;?>'>Add <?php echo ucwords($dna_type); ?></a>
+		 | <a class='inline' href='fasta.php?dna_type=<?php echo $dna_type; ?>&id=all'>FASTA sequences</a>
 		<div id='view'>
 		<?php
 		include 'db_con.php';
@@ -55,7 +52,7 @@
 				echo "<div id='topbar'>";
 				echo "<ul>";
 				echo ("<li><a href='browse.php?dna_type=".$dna_type."'>Complete List</a></li>");
-				echo ("<li><a href='fasta.php?dna_type=".$dna_type."&id=".$row['id']."'>FASTA</a></li>");
+				echo ("<li><a href='fasta.php?dna_type=".$dna_type."&id=".$id."'>FASTA Sequence</a></li>");
 			# only link to the plasmid map if this is a construct
 			switch ($dna_type) {
 				default:
@@ -69,18 +66,22 @@
 				echo ("<li><a href='help.php'>Help</a></li>");
 				echo '</ul>';
 				echo '</div>';
+                		echo ("<span id='modify'><a href='modify.php?dna_type=".$dna_type."&id=".$id."'>Modify Entry</a></span>");
 				echo "<h1>".$row['name']."</h1>";
+				echo "<p>".$row['short_desc']."</p><br />";
 			# display information based on dna type
 			switch ($dna_type) {
 				default:
 					break;
 				case 'oligo':
-					echo "<h4>Sequence:</h4><pre>".$row['sequence']."</pre>";
+					echo "<h4>Sequence:</h4><p>".$row['sequence']."</p>";
+					echo "<h4>Tm:</h4><p>".$row['tm']."&deg C</p>";
 					echo "<h4>Concentration (mM):</h4><p>".$row['concentration']."</p>";
 					echo "<h4>Supplier:</h4><p>".$row['supplier']."</p>";
 					break;
 				case 'construct':
 					echo "<div id='mapdiv'><a href=".$row['map']."><img src=".$row['map']." /></a></div>";
+					echo "<h4>Parent Vector:</h4><p>".$row['parent_vector']."</p><br />";
 					echo "<h4>Resistance:</h4><p>".$row['drug_resist']."</p><br />";
 					echo "<h4>Strain:</h4><p>".$row['strain']."</p><br />";
 					break;
@@ -88,7 +89,6 @@
 				echo "<h4>Notes:</h4><p>".$row['notes']."</p>";
 				echo "<h4>Added By:</h4><p>".$row['originator']."</p>";
 				echo "<h4>Date Added:</h4><p>".$row['date_added']."</p>";
-				echo ("<span id='delete'><a href='delete.php?dna_type=".$dna_type."&id=".$id."'>Delete Entry</a></span>");
 				}
 		}
 		else {
@@ -101,7 +101,8 @@
 				else {
 					while ($row = mysql_fetch_array($result))
 						{
-						echo ("<li><p><a href=?dna_type=".$dna_type."&id=".$row['id'].">".$row['name']."</a></p></li>");
+						echo ("<li><p><a href=?dna_type=".$dna_type."&id=".$row['id'].">".$row['name']."</a>");
+						echo (" - ".$row['short_desc']."</p></li>");
 						}
 					}
 				}

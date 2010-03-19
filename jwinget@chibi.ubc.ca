@@ -34,7 +34,7 @@
 		}
 
 		while ($row = mysql_fetch_array($result) ) {
-			echo('<li><p><a href=browse.php?dna_type=oligo&id='. $row['id'] . '>' . $row['name'] . '</a> - '.$row['short_desc'].'</p></li>');
+			echo('<li><p><a href=browse.php?dna_type=oligo&id='. $row['id'] . '>' . $row['name'] . '</a> - '.$row['notes'].'</p></li>');
 		}
 	?>
 	</ul>
@@ -56,7 +56,7 @@
 		}
 
 		while ($row = mysql_fetch_array($result) ) {
-			echo('<li><p><a href=browse.php?dna_type=construct&id='.$row['id'].'>'.$row['name'].'</a> - '.$row['short_desc'].'</p></li>');
+			echo('<li><p><a href=browse.php?dna_type=construct&id='.$row['id'].'>'.$row['name'].'</a> - '.$row['drug_resist'].' - '.$row['strain'].'</p></li>');
 		}
 	?>
 	</ul>

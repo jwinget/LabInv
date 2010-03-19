@@ -15,5 +15,4 @@
 		<INPUT TYPE='submit' VALUE='Login' />
 	</FORM>
 </div>
-</div>
 <?php include 'foot.php'; ?>

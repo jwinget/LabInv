@@ -1,0 +1,21 @@
+<?php
+echo 'initializing';
+include 'db_con.php';
+$result = mysql_query('SELECT * FROM oligos ORDER BY id');
+if (!$result) {
+	echo 'Error retrieving data';
+	exit();
+	}
+echo 'Data retrieved';
+echo $size;
+while ($row = mysql_fetch_array($result)) {
+	$cleanseq = $row['sequence'];
+	$g_count = substr_count($cleanseq, 'g');
+	$c_count = substr_count($cleanseq, 'c');
+	$tm = 64.9+41*($g_count+$c_count-16.4)/strlen($cleanseq);
+	$short_desc = mysql_real_escape_string($row['notes']);
+	$outquery = ("UPDATE oligos SET tm = '".$tm."', short_desc = '".$short_desc."' WHERE name = '".$row['name']."'");
+	mysql_query($outquery) or die ('Error updating records');
+	echo 'Success';
+	}
+?>

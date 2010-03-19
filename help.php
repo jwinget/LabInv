@@ -26,9 +26,9 @@
 	<li><a href='#maps'>Generating a plasmid map</a></li>
 </ul>
 <h2 id='navigating'>Browsing the Database</h2>
-<p class='inline'>The database is split into two main sections: </p><a class='inline' href='oligos.php'>oligos</a><p class='inline'> and </p><a class='inline' href='constructs.php'>constructs</a><p class='inline'>. Both can be accessed from the </p><a class='inline' href='index.php'>home</a><p class='inline'> page.</p>
+<p class='inline'>The database is split into two main sections: </p><a class='inline' href='browse.php?dna_type=oligo'>oligos</a><p class='inline'> and </p><a class='inline' href='browse.php?dna_type=construct'>constructs</a><p class='inline'>. Both can be accessed from the </p><a class='inline' href='index.php'>home</a><p class='inline'> page.</p>
 <p>If you click the complete listing for either, you will see a table with all entries in the given database (OTM or BPM). You can also click the name of any entry to see its detail page.</p>
-<p>FASTA-formatted sequences can also be produced either for the full database or for an individual entry. The links can be found on the complete listings and detail pages, respectively. These files may be helpful for use in programs like BLAST.</p>
+<p>FASTA-formatted sequences can also be produced either for the full database or for an individual entry. The links can be found at the top of the complete listings and detail pages, respectively. These files may be helpful for use in programs like BLAST.</p>
 <br />
 
 <h2 id='adding'>Adding to the Database</h2>

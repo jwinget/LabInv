@@ -18,7 +18,7 @@ header( 'Location:loginfailed.php');
 else
 {
 	$_SESSION['valid_user'] = $username;
-	header('Location: http://localhost/www/labinv/index.php');
+	header('Location: index.php');
 }
 }
 ?>

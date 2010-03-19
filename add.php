@@ -28,7 +28,7 @@
 		<ul id='crumbs'>
 			<li><a href='index.php'>Home</a></li>
 			<li><a href='browse.php?dna_type=<?php echo $dna_type; ?>'><?php echo ucwords($dna_type); ?> Database</a></li>
-			<li><p>Add <?php echo ucwords($dna_type); ?></p</li>
+			<li><p>Add <?php echo ucwords($dna_type); ?></p></li>
 		</ul>
 	</div>
 	<div id='main'>
@@ -65,7 +65,17 @@
 		}
 		?>
 		<li><h4>Entered by:</h4><INPUT TYPE=TEXT NAME="originator" /></li>
-		<li><h4>Note and Usage:</h4><TEXTAREA ROWS="5" COLS="40" NAME="notes"></textarea></li>
+		<li><h4>Short Description:</h4><p>This will be shown when browsing the full database</p><pre>Max 140 characters</pre><TEXTAREA ROWS='2' COLS='40' NAME='short_desc'></textarea></li>
+		<li><h4>Note and Usage:</h4>
+		<?php
+		switch ($dna_type) {
+		default:
+			break;
+		case 'construct':
+			echo ("<pre>include source if outside of the lab</pre>");
+		}
+		?>
+		<TEXTAREA ROWS="5" COLS="40" NAME="notes"></textarea></li>
 		<li><INPUT TYPE=SUBMIT NAME="submit_dna" ID="submit_dna" VALUE="SUBMIT" /></li>
 	</ul>
 	</FORM>
