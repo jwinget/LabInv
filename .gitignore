@@ -1,3 +1,5 @@
+bpmdump.txt
+bpm.csv
 bpmimporter.py
 *.bak
 labinv.sql
