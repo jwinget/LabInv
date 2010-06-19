@@ -12,7 +12,7 @@
 </head>
 <body>
 <div id='container'>
-		<h1><?php echo ucwords($dna_type); ?> Added Successfully</h1>
+		<h1><?php echo ucwords($dna_type); ?> Successfully Entered</h1>
 		<a href='browse.php?dna_type=<?php echo $dna_type; ?>'>Return to <?php echo $dna_type; ?> list</a>
 </div>
 <?php

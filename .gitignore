@@ -1,4 +1,13 @@
+bpmimporter.py
+*.bak
+labinv.sql
+rsync.sh
+db_cred.txt
+duties.php
+BPM.xls
 db_con.php
 otm_importer.py
 *.swp
 old/
+maps/
+utils/

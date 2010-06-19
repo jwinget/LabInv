@@ -34,10 +34,9 @@
 			<li><a href='index.php'>Home</a></li>
 			<li><p><?php echo ucwords($dna_type).' Database'; ?></p></li>
 		</ul>
+		<div id="db_utilities"><a class='inline' href='<?php echo 'add.php?dna_type='.$dna_type ;?>'>Add <?php echo ucwords($dna_type); ?></a> | <a class='inline' href='fasta.php?dna_type=<?php echo $dna_type; ?>&id=all'>FASTA sequences</a></div>
 	</div>
 	<div id='main'>
-			<a class='inline' href='<?php echo 'add.php?dna_type='.$dna_type ;?>'>Add <?php echo ucwords($dna_type); ?></a>
-		 | <a class='inline' href='fasta.php?dna_type=<?php echo $dna_type; ?>&id=all'>FASTA sequences</a>
 		<div id='view'>
 		<?php
 		include 'db_con.php';
@@ -60,14 +59,16 @@
 				case 'oligo':
 					break;
 				case 'construct':
-					echo ("<li><a href=".$row['map'].">Plasmid Map</a></li>");
+					echo ("<li><a href='".$row['map']."'>Plasmid Map</a></li>");
 					break;
 				}
 				echo ("<li><a href='help.php'>Help</a></li>");
 				echo '</ul>';
 				echo '</div>';
-                		echo ("<span id='modify'><a href='modify.php?dna_type=".$dna_type."&id=".$id."'>Modify Entry</a></span>");
-				echo "<h1>".$row['name']."</h1>";
+        echo '<ul class="utilities">';
+                		echo ("<li><a href='add.php?dna_type=".$dna_type."&id=".$id."'>Modify Entry</a></li>");
+        echo '</ul>';
+        echo "<h1>".$row['name']."</h1>";
 				echo "<p>".$row['short_desc']."</p><br />";
 			# display information based on dna type
 			switch ($dna_type) {
@@ -76,7 +77,7 @@
 				case 'oligo':
 					echo "<h4>Sequence:</h4><p>".$row['sequence']."</p>";
 					echo "<h4>Tm:</h4><p>".$row['tm']."&deg C</p>";
-					echo "<h4>Concentration (mM):</h4><p>".$row['concentration']."</p>";
+					echo "<h4>Concentration (&#181;M):</h4><p>".$row['concentration']."</p>";
 					echo "<h4>Supplier:</h4><p>".$row['supplier']."</p>";
 					break;
 				case 'construct':
@@ -99,10 +100,27 @@
 					exit();
 				}
 				else {
+					// Set up an array to be sorted
+					$resultarray = array();
 					while ($row = mysql_fetch_array($result))
 						{
-						echo ("<li><p><a href=?dna_type=".$dna_type."&id=".$row['id'].">".$row['name']."</a>");
-						echo (" - ".$row['short_desc']."</p></li>");
+						$resultarray[$row['name']] = $row;
+						}
+					function natksort($array) {
+						$keys = array_keys($array);
+						natsort($keys);
+
+						$ret = array();
+						foreach ($keys as $k) {
+							$ret[$k] = $array[$k];
+						}
+						return $ret;
+					}
+
+					$resultarray = natksort($resultarray);
+					foreach ($resultarray as $resultvalue) {
+						echo ("<li><p><a href=?dna_type=".$dna_type."&id=".$resultvalue['id'].">".$resultvalue['name']."</a>");
+						echo (" - ".$resultvalue['short_desc']."</p></li>");
 						}
 					}
 				}

@@ -14,8 +14,10 @@
 		<?php $dna_type = $_GET['dna_type'];
 			switch ($dna_type) {
 				case 'oligo':
+					$nametype = 'OTM';
 					break;
 				case 'construct':
+					$nametype = 'BPM';
 					break;
 				default:
 					header('Location: 404.php');
@@ -54,15 +56,12 @@
 		while ($row = mysql_fetch_array($query)) {
 	echo "<FORM ".$form_enctype." ACTION='db_modify.php?dna_type=".$dna_type."&id=".$id."' METHOD=POST>";
 	echo "<ul id='addform'>";
-		echo "<li><h4>Name:</h4><INPUT TYPE=TEXT NAME='dna_name' value='".$row['name']."'/></li>";
+		echo "<li><h4>".$nametype." Name:</h4><INPUT TYPE=TEXT NAME='dna_name' value='".$row['name']."'/></li>";
+		echo '<li><h4>Short Description:</h4><TEXTAREA ROWS="3" COLS="40" NAME="short_desc">'.$row['short_desc'].'</textarea></li>';
 		echo "<li><h4>Sequence:</h4><TEXTAREA ROWS='10' COLS='40' NAME='dna_sequence'>".$row['sequence']."</textarea></li>";
 		switch ($dna_type) {
 			case 'construct':
 				echo '<li><h4>Parent Vector:</h4><INPUT TYPE="TEXT" NAME="parent_vector" VALUE='.$row['parent_vector'].' /></li>';
-				echo '<li><h4>Map:</h4>';
-				echo '<a class="inline" href="http://wishart.biology.ualberta.ca/PlasMapper/" target="_blank">Generate map</a><p class="inline">, save to your computer, and upload below</p><br />';
-				echo '<INPUT TYPE=HIDDEN NAME="max_map_size" VALUE="300000" />';
-				echo '<INPUT TYPE=FILE NAME="dna_map" /></li>';
 				echo '<li><h4>Drug Resistance:</h4><INPUT TYPE=TEXT NAME="dna_resist" VALUE='.$row['drug_resist'].' /></li>';
 				echo '<li><h4>Strain:</h4><INPUT TYPE=TEXT NAME="strain" VALUE='.$row['strain'].' /></li>';
 				break;
@@ -74,7 +73,6 @@
 				break;
 		}
 		echo '<li><h4>Entered by:</h4><INPUT TYPE=TEXT NAME="originator" VALUE='.$row['originator'].' /></li>';
-		echo '<li><h4>Short Description:</h4><TEXTAREA ROWS="3" COLS="40" NAME="short_desc">'.$row['short_desc'].'</textarea></li>';
 		echo '<li><h4>Notes and Usage:</h4><TEXTAREA ROWS="5" COLS="40" NAME="notes">'.$row['notes'].'</textarea></li>';
 		echo '<li><input type="checkbox" name="deletebox" value="delete"><h4 class="inline">Delete '.$dna_type.'</h4></input>';
 		echo '<li><INPUT TYPE=SUBMIT NAME="modify_dna" ID="modify_dna" VALUE="MODIFY" /></li>';

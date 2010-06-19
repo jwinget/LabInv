@@ -4,4 +4,5 @@
 <head>
 	<title>DNA Inventory Management</title>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<link rel='stylesheet' type='text/css' href='style.css' />
+  <link rel='stylesheet' type='text/css' href='print.css' media='print' />
+	<link rel='stylesheet' type='text/css' href='style.css' media='all' />

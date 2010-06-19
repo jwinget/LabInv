@@ -1,0 +1,9 @@
+h1 { font-size: 18pt; }
+h2 { font-size: 16pt; }
+h3 { font-size: 14pt; }
+h4 { font-size: 12pt; }
+p, a { font-size: 11pt; }
+
+#mapdiv { width: 65% !important; }
+#container { width: 95%; }
+#top, #nav, #db_utilities, .utilities, #topbar, #footer p, #footer small { display: none; }

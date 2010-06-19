@@ -118,13 +118,15 @@ a:hover {
 #mapdiv {
 	width: 350px;
 	float: right;
-	overflow: hidden;
+	overflow: auto;
 	}
+#bigmap { display: none; }
 #mapdiv img {
 	width: 100%;
 	}
 /* DESIGN & DECORATION */
 body {
+	clear: both;
 	border-top: 20px solid black;
 	border-bottom: 50px solid black;
 	}
@@ -148,6 +150,9 @@ body {
 	border: none;
 	padding: 0 20px 0 0;
 	background: url(site_media/crumbs.gif) no-repeat right center white;
+	}
+#db_utilities {
+	float: right;
 	}
 #main {
 	clear: both;
@@ -174,13 +179,17 @@ body {
 	display: inline;
 	padding: 0 0.5em;
 	}
-#modify {
+.utilities {
 	float: right;
 	margin-bottom: 1em;
 	padding: 0.25em;
 	border: 1px solid #7F8F74;
 	background-color: #E0F0D6;
 	}
+.utilities li {
+    display: inline;
+    padding: 0.5em;
+}
 #addform li {
 	margin-top: 1em;
 }
